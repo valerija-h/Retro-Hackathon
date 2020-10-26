@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1867755275300321258}
   - component: {fileID: 5535798407565827678}
   - component: {fileID: 686988698758799877}
+  - component: {fileID: 7967302280295201689}
   m_Layer: 8
   m_Name: Mystery Block
   m_TagString: mysteryBlock
@@ -130,6 +131,26 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7967302280295201689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3573691661804634946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ef32b7d0013b412ba64aac98aaa357b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  givesCoin: 1
+  mushroom: {fileID: 8970252189949663356, guid: 9a67eed026bc54ce78ce20cb0468ff1b,
+    type: 3}
+  flower: {fileID: 5477464628872475261, guid: 683f6b6db9abc4ccfad8a7e1ea9cea59, type: 3}
+  nonPickupCoin: {fileID: 3034836028946227418, guid: 72b551e3c6be04b2782f1f62737b4295,
+    type: 3}
+  usedSprite: {fileID: 4210305635217951160, guid: 0592ebd31c88140c79bd9cce50c2e620,
+    type: 3}
 --- !u!1 &5094986949646615654
 GameObject:
   m_ObjectHideFlags: 0
