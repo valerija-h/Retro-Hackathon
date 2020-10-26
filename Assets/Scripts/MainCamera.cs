@@ -18,6 +18,7 @@ public class MainCamera : MonoBehaviour
         if (player.transform.position.x > lastPlayerPosition.x && player.transform.position.x > this.transform.position.x) {
             distanceToMove = player.transform.position.x - lastPlayerPosition.x;
             transform.position = new Vector3(transform.position.x + distanceToMove, transform.position.y, transform.position.z);
+            player.GetComponent<MarioAgent>().RewardMovement();
         }
         lastPlayerPosition = player.transform.position;
     }

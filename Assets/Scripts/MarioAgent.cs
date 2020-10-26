@@ -19,6 +19,7 @@ public class MarioAgent : Agent
     public float flowerReward;
     public float mysteryBlockReward;
     public float brickBlockReward;
+    public float movementRightReward; //rewards when camera moves right
 
     public Sprite smallMarioSprite;
     public Sprite bigMarioSprite;
@@ -59,10 +60,7 @@ public class MarioAgent : Agent
         {
             // only move left if Mario will not go out of bounds
             if (leftmovement >= 1f && transform.position.x > horizontalMin) { movement = -1; }
-            if (rightmovement >= 1f) {
-                movement = 1;
-                AddReward(100);
-            }
+            if (rightmovement >= 1f) { movement = 1; }
         }
 
         // move the player
@@ -283,6 +281,10 @@ public class MarioAgent : Agent
         }
         ChangeAnimatorState("jumping");
         return false;
+    }
+
+    public void RewardMovement() {
+        AddReward(movementRightReward);
     }
 
 }
