@@ -20,7 +20,7 @@ public class MarioAgent : Agent
     public float mysteryBlockReward;
     public float brickBlockReward;
     public float movementRightReward; //rewards when camera moves right
-    public float cameraXStart; // the starting X bound of the camera - changes as Mario moves
+    public float moveBeforeCameraReward; // reward for moving too far left (out of camera bounds)
 
     public Sprite smallMarioSprite;
     public Sprite bigMarioSprite;
@@ -42,6 +42,7 @@ public class MarioAgent : Agent
     private Animator animator;
     private CoinManager coinManager;
     private ScoreManager scoreManager;
+    private float cameraXStart; // the starting X bound of the camera - changes as Mario moves
 
     // what agent does when an action is taken - moves player
     public override void OnActionReceived(float[] vectorAction)
@@ -60,7 +61,13 @@ public class MarioAgent : Agent
         else
         {
             // only move left if Mario will not go out of bounds
-            if (leftmovement >= 1f && transform.position.x > cameraXStart) { movement = -1; }
+            if (leftmovement >= 1f) {
+                if(transform.position.x > cameraXStart) {
+                    movement = -1;
+                } else {
+                    AddReward(moveBeforeCameraReward);
+                }
+            }
             if (rightmovement >= 1f) { movement = 1; }
         }
 
