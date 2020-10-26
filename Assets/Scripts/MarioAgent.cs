@@ -59,7 +59,10 @@ public class MarioAgent : Agent
         {
             // only move left if Mario will not go out of bounds
             if (leftmovement >= 1f && transform.position.x > horizontalMin) { movement = -1; }
-            if (rightmovement >= 1f) { movement = 1; }
+            if (rightmovement >= 1f) {
+                movement = 1;
+                AddReward(100);
+            }
         }
 
         // move the player

@@ -2970,6 +2970,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7967302280295201689, guid: fb06851ecba1e824e90d2166e1109294,
+        type: 3}
+      propertyPath: givesCoin
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb06851ecba1e824e90d2166e1109294, type: 3}
 --- !u!4 &901766243 stripped
@@ -16882,6 +16887,11 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1707564221201057471, guid: fd0d7745dab934d4d8b6d738cc0111d2,
+        type: 3}
+      propertyPath: m_ObservationStacks
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2318978669613884455, guid: fd0d7745dab934d4d8b6d738cc0111d2,
         type: 3}
       propertyPath: camera
@@ -16897,6 +16907,51 @@ PrefabInstance:
       propertyPath: allBrickBlocks
       value: 
       objectReference: {fileID: 1571678292}
+    - target: {fileID: 2318978669613884455, guid: fd0d7745dab934d4d8b6d738cc0111d2,
+        type: 3}
+      propertyPath: coinReward
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2318978669613884455, guid: fd0d7745dab934d4d8b6d738cc0111d2,
+        type: 3}
+      propertyPath: killGoombaReward
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2318978669613884455, guid: fd0d7745dab934d4d8b6d738cc0111d2,
+        type: 3}
+      propertyPath: hitByGoombaReward
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2318978669613884455, guid: fd0d7745dab934d4d8b6d738cc0111d2,
+        type: 3}
+      propertyPath: hitByKillboxReward
+      value: -1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2318978669613884455, guid: fd0d7745dab934d4d8b6d738cc0111d2,
+        type: 3}
+      propertyPath: flagReward
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2318978669613884455, guid: fd0d7745dab934d4d8b6d738cc0111d2,
+        type: 3}
+      propertyPath: mushroomReward
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2318978669613884455, guid: fd0d7745dab934d4d8b6d738cc0111d2,
+        type: 3}
+      propertyPath: flowerReward
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2318978669613884455, guid: fd0d7745dab934d4d8b6d738cc0111d2,
+        type: 3}
+      propertyPath: mysteryBlockReward
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2318978669613884455, guid: fd0d7745dab934d4d8b6d738cc0111d2,
+        type: 3}
+      propertyPath: brickBlockReward
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2796813084289008740, guid: fd0d7745dab934d4d8b6d738cc0111d2,
         type: 3}
       propertyPath: camera
