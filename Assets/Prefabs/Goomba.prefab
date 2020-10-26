@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 266210873806797117}
   - component: {fileID: 8493322770145094}
   - component: {fileID: 8104833457243592625}
+  - component: {fileID: 3681554405555710595}
   m_Layer: 9
   m_Name: Goomba
   m_TagString: goomba
@@ -146,9 +147,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 1
-  isRight: 0
+  isRight: 1
   startMovingDistanceX: 20
   mario: {fileID: 0}
+--- !u!95 &3681554405555710595
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089153666490881996}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4abc48fe063eefa418b4c34e212d8798, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6417655660245740204
 GameObject:
   m_ObjectHideFlags: 0
