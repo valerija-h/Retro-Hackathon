@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - brickBlockUnder
+  - brickBlock
+  - goomba
+  - goombaTop
+  - mysteryBlock
+  - mysteryBlockUnder
+  - mushroom
+  - flower
+  - killbox
+  - endFlag
   layers:
   - Default
   - TransparentFX
@@ -13,8 +23,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Ground
+  - Goomba
   - 
   - 
   - 

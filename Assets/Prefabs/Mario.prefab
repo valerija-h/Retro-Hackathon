@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 1818196156768877959}
   - component: {fileID: 7984430729425602039}
   - component: {fileID: 309250592597013430}
+  - component: {fileID: 5122017495421648952}
+  - component: {fileID: 2318978669613884455}
+  - component: {fileID: 9181427176456526198}
   m_Layer: 0
   m_Name: Mario
   m_TagString: Untagged
@@ -131,3 +134,76 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &5122017495421648952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7287838214846493542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    VectorObservationSize: 8
+    NumStackedVectorObservations: 1
+    VectorActionSize: 020000000200000002000000
+    VectorActionDescriptions: []
+    VectorActionSpaceType: 0
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 1
+  m_BehaviorName: My Behavior
+  TeamId: 0
+  m_UseChildSensors: 1
+  m_UseChildActuators: 1
+  m_ObservableAttributeHandling: 0
+--- !u!114 &2318978669613884455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7287838214846493542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae8381e353e445aba3ed1a5196ac8a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: -1
+  movementSpeed: 5.5
+  jumpForce: 9
+  camera: {fileID: 0}
+  coinReward: 0
+  killGoombaReward: 0
+  mushroomReward: 0
+  flowerReward: 0
+  mysteryBlockReward: 0
+  brickBlockReward: 0
+  smallMarioSprite: {fileID: 3231394599993212667, guid: 0592ebd31c88140c79bd9cce50c2e620,
+    type: 3}
+  bigMarioSprite: {fileID: -8987971270192609031, guid: 0592ebd31c88140c79bd9cce50c2e620,
+    type: 3}
+  smallMarioAnimator: {fileID: 0}
+  bigMarioAnimator: {fileID: 0}
+  smallMarioColliderSize: {x: 0.8125, y: 1}
+  bigMarioColliderSize: {x: 1, y: 2}
+--- !u!114 &9181427176456526198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7287838214846493542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecisionPeriod: 1
+  TakeActionsBetweenDecisions: 1
