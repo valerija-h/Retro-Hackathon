@@ -43,6 +43,7 @@ public class MarioAgent : Agent
     private CoinManager coinManager;
     private ScoreManager scoreManager;
     private float cameraXStart; // the starting X bound of the camera - changes as Mario moves
+    private float cameraCurrPos;
 
     // what agent does when an action is taken - moves player
     public override void OnActionReceived(float[] vectorAction)
@@ -54,7 +55,8 @@ public class MarioAgent : Agent
         int movement = 0; // direction of movement L or R
 
         // the x start bound of the camera
-        cameraXStart = camera.transform.position.x - (camera.aspect * camera.orthographicSize);
+        cameraCurrPos = camera.transform.position.x;
+        cameraXStart = cameraCurrPos - (camera.aspect * camera.orthographicSize);
 
         // determine whether player is moving L or R or both
         if (leftmovement >= 1f && rightmovement >= 1f) { movement = 0; }
@@ -163,6 +165,7 @@ public class MarioAgent : Agent
         sensor.AddObservation(isHit);
         sensor.AddObservation(isGrounded);
         sensor.AddObservation(cameraXStart);
+        sensor.AddObservation(cameraCurrPos);
 
         sensor.AddObservation(coins);
         sensor.AddObservation(score);
