@@ -1671,7 +1671,7 @@ PrefabInstance:
     - target: {fileID: 8945576201971849474, guid: ddbcb44d3da612147b902f5e51cc6dba,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8945576201971849474, guid: ddbcb44d3da612147b902f5e51cc6dba,
         type: 3}
@@ -15597,80 +15597,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!1001 &1243535121
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1936484875}
-    m_Modifications:
-    - target: {fileID: 2089153666490881996, guid: 661537f28cd47459295118db411bea31,
-        type: 3}
-      propertyPath: m_Name
-      value: Goomba
-      objectReference: {fileID: 0}
-    - target: {fileID: 2430150881728821237, guid: 661537f28cd47459295118db411bea31,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.431982
-      objectReference: {fileID: 0}
-    - target: {fileID: 2430150881728821237, guid: 661537f28cd47459295118db411bea31,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.1791997
-      objectReference: {fileID: 0}
-    - target: {fileID: 2430150881728821237, guid: 661537f28cd47459295118db411bea31,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2430150881728821237, guid: 661537f28cd47459295118db411bea31,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2430150881728821237, guid: 661537f28cd47459295118db411bea31,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2430150881728821237, guid: 661537f28cd47459295118db411bea31,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2430150881728821237, guid: 661537f28cd47459295118db411bea31,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2430150881728821237, guid: 661537f28cd47459295118db411bea31,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2430150881728821237, guid: 661537f28cd47459295118db411bea31,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2430150881728821237, guid: 661537f28cd47459295118db411bea31,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2430150881728821237, guid: 661537f28cd47459295118db411bea31,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8104833457243592625, guid: 661537f28cd47459295118db411bea31,
-        type: 3}
-      propertyPath: mario
-      value: 
-      objectReference: {fileID: 689035575375076343}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 661537f28cd47459295118db411bea31, type: 3}
 --- !u!1001 &1261211711
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16481,12 +16407,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1789502395}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1815939374 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2430150881728821237, guid: 661537f28cd47459295118db411bea31,
-    type: 3}
-  m_PrefabInstance: {fileID: 1243535121}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1826648341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16610,7 +16530,6 @@ Transform:
   - {fileID: 482348052}
   - {fileID: 1275588408}
   - {fileID: 431263151}
-  - {fileID: 1815939374}
   - {fileID: 138393852}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -16968,6 +16887,16 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 1945270611}
+    - target: {fileID: 2318978669613884455, guid: fd0d7745dab934d4d8b6d738cc0111d2,
+        type: 3}
+      propertyPath: allMysteryBlocks
+      value: 
+      objectReference: {fileID: 1181667857}
+    - target: {fileID: 2318978669613884455, guid: fd0d7745dab934d4d8b6d738cc0111d2,
+        type: 3}
+      propertyPath: allBrickBlocks
+      value: 
+      objectReference: {fileID: 1571678292}
     - target: {fileID: 2796813084289008740, guid: fd0d7745dab934d4d8b6d738cc0111d2,
         type: 3}
       propertyPath: camera

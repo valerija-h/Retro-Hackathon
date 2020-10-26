@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2318978669613884455}
   - component: {fileID: 9181427176456526198}
   - component: {fileID: 107510369362073534}
+  - component: {fileID: 1707564221201057471}
   m_Layer: 0
   m_Name: Mario
   m_TagString: Untagged
@@ -182,6 +183,9 @@ MonoBehaviour:
   camera: {fileID: 0}
   coinReward: 0
   killGoombaReward: 0
+  hitByGoombaReward: 0
+  hitByKillboxReward: 0
+  flagReward: 0
   mushroomReward: 0
   flowerReward: 0
   mysteryBlockReward: 0
@@ -190,10 +194,10 @@ MonoBehaviour:
     type: 3}
   bigMarioSprite: {fileID: -8987971270192609031, guid: 0592ebd31c88140c79bd9cce50c2e620,
     type: 3}
-  smallMarioAnimator: {fileID: 0}
-  bigMarioAnimator: {fileID: 0}
   smallMarioColliderSize: {x: 0.8125, y: 1}
   bigMarioColliderSize: {x: 1, y: 2}
+  allMysteryBlocks: {fileID: 0}
+  allBrickBlocks: {fileID: 0}
 --- !u!114 &9181427176456526198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,3 +231,37 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1707564221201057471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7287838214846493542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67c7e722ba14acd9153bb4488bff6e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: RayPerceptionSensor
+  m_DetectableTags:
+  - mysteryBlock
+  - brickBlock
+  - mysteryBlockUnder
+  - brickBlockUnder
+  - endFlag
+  - goomba
+  - goombaTop
+  - killbox
+  - mushroom
+  - flower
+  m_RaysPerDirection: 20
+  m_MaxRayDegrees: 180
+  m_SphereCastRadius: 0.5
+  m_RayLength: 20
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 768
+  m_ObservationStacks: 1
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}

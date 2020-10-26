@@ -12,6 +12,9 @@ public class MarioAgent : Agent
 
     public float coinReward;
     public float killGoombaReward;
+    public float hitByGoombaReward;
+    public float hitByKillboxReward;
+    public float flagReward;
     public float mushroomReward;
     public float flowerReward;
     public float mysteryBlockReward;
@@ -19,12 +22,13 @@ public class MarioAgent : Agent
 
     public Sprite smallMarioSprite;
     public Sprite bigMarioSprite;
-    public Animator smallMarioAnimator;
-    public Animator bigMarioAnimator;
     public Vector2 smallMarioColliderSize;
     public Vector2 bigMarioColliderSize;
-    private float raycastDistance = 0.6f;
 
+    public GameObject allMysteryBlocks;
+    public GameObject allBrickBlocks;
+    private Vector3 originalCamPosition;
+    private float raycastDistance = 0.6f;
     private bool isHit = false; // invicibility after being hit
     private bool isBig = false; // size after collecting mushroom
     private bool isGrounded = true;
@@ -33,7 +37,7 @@ public class MarioAgent : Agent
     private Vector3 agentStartPosition; // starting position of agent
     private Rigidbody2D playerRigidbody;
     private RigidbodyConstraints2D previousConstraints;
-
+    private Animator animator;
     private CoinManager coinManager;
     private ScoreManager scoreManager;
 
@@ -68,6 +72,10 @@ public class MarioAgent : Agent
             playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, jumpForce);
         }
 
+        //TODO - maybe change the location of the animator changes - to test
+        if (movement != 0 && isGrounded) { ChangeAnimatorState("running"); }
+        else if (movement == 0 && isGrounded) { ChangeAnimatorState("idle"); }
+
         // penalty given each step to encourage agent to finish task quickly
         AddReward(-1f / MaxStep);
     }
@@ -84,7 +92,46 @@ public class MarioAgent : Agent
     {
         this.transform.position = agentStartPosition; // reset agent's position
         ChangeToSmallMario();
-        //TODO - call reset functions of all the blocks - mystery, brick and goomba!
+        camera.transform.position = originalCamPosition;
+        scoreManager.ResetScore();
+        coinManager.ResetCoins();
+        score = scoreManager.GetScore();
+        coins = coinManager.GetCoins();
+        //call reset functions of all the blocks - mystery, brick and goomba!
+        ResetAllObjects(allMysteryBlocks, "mysteryBlock");
+        ResetAllObjects(allBrickBlocks, "brickBlock");
+        //TODO - reset all goombas!
+    }
+
+    private void ResetAllObjects(GameObject currGameObject, string tagName)
+    {
+        // for each child in Gameobject reset them!
+        foreach (Transform child in currGameObject.transform)
+        {
+            if (tagName == "mysteryBlock") { child.GetComponent<MysteryBlockManager>().ResetMysteryBlock(); }
+            if (tagName == "brickBlock") { child.GetComponent<BrickBlockManager>().ResetBrickBlock(); }
+            if (tagName == "goomba") { child.GetComponent<GoombaManager>().ResetGoomba(); }
+        }
+    }
+
+    // changes Mario's animation states
+    private void ChangeAnimatorState(string action)
+    {
+        switch (action)
+        {
+            case "running":
+                if (isBig) { animator.SetInteger("movementState", 1); }
+                else { animator.SetInteger("movementState", 1); }
+                break;
+            case "jumping":
+                if (isBig) { animator.SetInteger("movementState", 2); }
+                else { animator.SetInteger("movementState", 2); }
+                break;
+            default:
+                if (isBig) { animator.SetInteger("movementState", 0); }
+                else { animator.SetInteger("movementState", 0); }
+                break;
+        }
     }
 
     // the observations of the agent
@@ -108,6 +155,8 @@ public class MarioAgent : Agent
         coinManager = FindObjectOfType<CoinManager>();
         scoreManager = FindObjectOfType<ScoreManager>();
         previousConstraints = playerRigidbody.constraints;
+        animator = GetComponent<Animator>();
+        originalCamPosition = camera.transform.position;
     }
 
     private void Update()
@@ -119,7 +168,6 @@ public class MarioAgent : Agent
     {
         string collisionTag = collision.gameObject.tag;
 
-        //TODO - program the collisions
         switch (collisionTag)
         {
             case "mushroom":
@@ -143,16 +191,20 @@ public class MarioAgent : Agent
                 AddReward(killGoombaReward);
                 break;
             case "goomba":
-                if (isBig) {
+                if (isBig)
+                {
                     StartCoroutine(GetHit());
-                } else {
-                    //TODO - kill Mario - reset agent
-                    //TODO - Add negative reward
+                }
+                else
+                {
+                    AddReward(hitByGoombaReward);
+                    //TODO - play death animation with coroutine then end episode
+                    EndEpisode();
                 }
                 break;
             case "killbox":
-                //TODO - kill Mario - reset agent
-                //TODO - Add negative reward
+                AddReward(hitByKillboxReward);
+                EndEpisode();
                 break;
             case "brickBlockUnder":
                 collision.gameObject.GetComponentInParent<BrickBlockManager>().HitBrickBlock(isBig);
@@ -167,9 +219,9 @@ public class MarioAgent : Agent
                 AddReward(mysteryBlockReward);
                 break;
             case "endFlag":
-                //TODO - calls function of the end flag (if any)
-                //TODO - add HIGH reward
-                //TODO - mark as done
+                //TODO - play end flag animation, sounds then end episode?
+                AddReward(flagReward);
+                EndEpisode();
                 break;
             default:
                 break;
@@ -180,7 +232,6 @@ public class MarioAgent : Agent
     {
         if (!isBig)
         {
-            //TODO - change animator
             this.GetComponent<SpriteRenderer>().sprite = bigMarioSprite;
             this.GetComponent<BoxCollider2D>().size = bigMarioColliderSize;
             isBig = true;
@@ -193,7 +244,6 @@ public class MarioAgent : Agent
     {
         if (isBig)
         {
-            //TODO - change animator
             this.GetComponent<SpriteRenderer>().sprite = smallMarioSprite;
             this.GetComponent<BoxCollider2D>().size = smallMarioColliderSize;
             isBig = false;
@@ -228,6 +278,7 @@ public class MarioAgent : Agent
         {
             return true;
         }
+        ChangeAnimatorState("jumping");
         return false;
     }
 

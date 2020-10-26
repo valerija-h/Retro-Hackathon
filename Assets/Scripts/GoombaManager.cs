@@ -15,6 +15,7 @@ public class GoombaManager : MonoBehaviour
     private bool originalIsRight;
     private Vector3 originalPosition; // position at start of game
     private ScoreManager scoreManager;
+    private Animator animator;
 
     private void Start()
     {
@@ -22,6 +23,7 @@ public class GoombaManager : MonoBehaviour
         scoreManager = FindObjectOfType<ScoreManager>();
         originalPosition = this.transform.position;
         originalIsRight = this.isRight;
+        animator = this.GetComponent<Animator>();
     }
 
     private void Update()
@@ -36,18 +38,23 @@ public class GoombaManager : MonoBehaviour
             }
 
             GoombaMovement();
-        } else {
+        }
+        else
+        {
             // start moving when Mario is nearby
-            float distanceFromMario =  this.transform.position.x - mario.transform.position.x;
-            if (distanceFromMario < startMovingDistanceX) {
+            float distanceFromMario = this.transform.position.x - mario.transform.position.x;
+            if (distanceFromMario < startMovingDistanceX)
+            {
                 isMoving = true;
             }
         }
     }
 
     // function for moving Goomba
-    private void GoombaMovement() { 
-        if (!isHit) {
+    private void GoombaMovement()
+    {
+        if (!isHit)
+        {
             float movement = 1;
             if (!isRight) { movement = -1; }
 
@@ -80,7 +87,7 @@ public class GoombaManager : MonoBehaviour
     // if Goomba falls off platform
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("killbox")) 
+        if (collision.gameObject.CompareTag("killbox"))
         {
             isMoving = false;
             gameObject.SetActive(false);
@@ -90,6 +97,7 @@ public class GoombaManager : MonoBehaviour
     public void ResetGoomba()
     {
         gameObject.SetActive(true);
+        animator.SetBool("IsHit", false);
         isMoving = false;
         isHit = false; // if he is hit by Mario
         transform.position = originalPosition;
@@ -97,15 +105,21 @@ public class GoombaManager : MonoBehaviour
     }
 
     // activates if Mario jumps on Goomba
-    public void HitGoomba() {
-        scoreManager.AddScore("goomba");
-        StartCoroutine(KillGoomba());
+    public void HitGoomba()
+    {
+        if (!isHit)
+        {
+            StartCoroutine(KillGoomba());
+        }
     }
 
     // plays animation of goomba death shortly
     IEnumerator KillGoomba()
     {
-        //TODO - play animation of Goomba death
+        isHit = true;
+        scoreManager.AddScore("goomba");
+        //TODO - play sound effect maybe?
+        animator.SetBool("IsHit", true);
 
         yield return new WaitForSeconds(0.5f);
 
