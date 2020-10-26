@@ -101,7 +101,19 @@ public class MarioAgent : Agent
         //call reset functions of all the blocks - mystery, brick and goomba!
         ResetAllObjects(allMysteryBlocks, "mysteryBlock");
         ResetAllObjects(allBrickBlocks, "brickBlock");
+        DestroyAll("mushroom");
+        DestroyAll("flower");
         //TODO - reset all goombas!
+    }
+
+    // destroy all objects with a specific tag
+    private void DestroyAll(string currTag)
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(currTag);
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            Destroy(enemies[i]);
+        }
     }
 
     private void ResetAllObjects(GameObject currGameObject, string tagName)
