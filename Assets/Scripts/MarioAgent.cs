@@ -20,6 +20,7 @@ public class MarioAgent : Agent
     public float mysteryBlockReward;
     public float brickBlockReward;
     public float movementRightReward; //rewards when camera moves right
+    public float cameraXStart; // the starting X bound of the camera - changes as Mario moves
 
     public Sprite smallMarioSprite;
     public Sprite bigMarioSprite;
@@ -52,14 +53,14 @@ public class MarioAgent : Agent
         int movement = 0; // direction of movement L or R
 
         // the x start bound of the camera
-        float horizontalMin = camera.transform.position.x - (camera.aspect * camera.orthographicSize);
+        cameraXStart = camera.transform.position.x - (camera.aspect * camera.orthographicSize);
 
         // determine whether player is moving L or R or both
         if (leftmovement >= 1f && rightmovement >= 1f) { movement = 0; }
         else
         {
             // only move left if Mario will not go out of bounds
-            if (leftmovement >= 1f && transform.position.x > horizontalMin) { movement = -1; }
+            if (leftmovement >= 1f && transform.position.x > cameraXStart) { movement = -1; }
             if (rightmovement >= 1f) { movement = 1; }
         }
 
@@ -154,6 +155,7 @@ public class MarioAgent : Agent
         sensor.AddObservation(isBig);
         sensor.AddObservation(isHit);
         sensor.AddObservation(isGrounded);
+        sensor.AddObservation(cameraXStart);
 
         sensor.AddObservation(coins);
         sensor.AddObservation(score);
