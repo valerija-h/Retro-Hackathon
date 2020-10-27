@@ -182,8 +182,8 @@ MonoBehaviour:
   jumpForce: 9
   camera: {fileID: 0}
   coinReward: 0.2
-  killGoombaReward: 0
-  hitByGoombaReward: 0
+  killGoombaReward: 0.2
+  hitByGoombaReward: -5
   hitByKillboxReward: -5
   flagReward: 5
   mushroomReward: 1
@@ -202,6 +202,7 @@ MonoBehaviour:
   bigMarioColliderSize: {x: 1, y: 2}
   allMysteryBlocks: {fileID: 0}
   allBrickBlocks: {fileID: 0}
+  allGoombas: {fileID: 0}
   coinManager: {fileID: 0}
   scoreManager: {fileID: 0}
   academy: {fileID: 0}
