@@ -211,6 +211,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1407726065215080727, guid: 7f1de73e636c2bb4082e9db94040030a,
+        type: 3}
+      propertyPath: moveCameraRightReward
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1407726065215080727, guid: 7f1de73e636c2bb4082e9db94040030a,
+        type: 3}
+      propertyPath: hitByKillboxReward
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4190713257692418644, guid: 7f1de73e636c2bb4082e9db94040030a,
         type: 3}
       propertyPath: m_Tiles.Array.data[1].second.m_TileSpriteIndex
@@ -796,7 +806,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 67f47187b148edd469d2158bf82db664,
+      objectReference: {fileID: 5022602860645237092, guid: a6815971d13dbc5428189dfc5726635b,
         type: 3}
+    - target: {fileID: 8408953276687363336, guid: 7f1de73e636c2bb4082e9db94040030a,
+        type: 3}
+      propertyPath: m_BehaviorType
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f1de73e636c2bb4082e9db94040030a, type: 3}

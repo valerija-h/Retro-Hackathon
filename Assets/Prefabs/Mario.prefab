@@ -156,7 +156,7 @@ MonoBehaviour:
     VectorActionSpaceType: 0
   m_Model: {fileID: 0}
   m_InferenceDevice: 1
-  m_BehaviorType: 1
+  m_BehaviorType: 0
   m_BehaviorName: Score Multi-Learning
   TeamId: 0
   m_UseChildSensors: 1
@@ -184,16 +184,16 @@ MonoBehaviour:
   coinReward: 0.2
   killGoombaReward: 0
   hitByGoombaReward: 0
-  hitByKillboxReward: 0
-  flagReward: 10
+  hitByKillboxReward: -5
+  flagReward: 5
   mushroomReward: 1
   flowerReward: 1
   mysteryBlockReward: 0
   brickBlockReward: 0.05
   moveRightReward: 0
-  moveCameraRightReward: 0.0005
+  moveCameraRightReward: 0.001
   moveLeftReward: 0
-  timeLeftReward: 0
+  timeLeftReward: 0.05
   smallMarioSprite: {fileID: 3231394599993212667, guid: 0592ebd31c88140c79bd9cce50c2e620,
     type: 3}
   bigMarioSprite: {fileID: -8987971270192609031, guid: 0592ebd31c88140c79bd9cce50c2e620,
