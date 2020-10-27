@@ -180,6 +180,8 @@ MonoBehaviour:
   MaxStep: 30000
   movementSpeed: 5.5
   jumpForce: 9
+  fallMultiplier: 2.5
+  lowJumpMultiplier: 2
   camera: {fileID: 0}
   coinReward: 0.2
   killGoombaReward: 0.2
