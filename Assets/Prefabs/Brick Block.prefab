@@ -166,7 +166,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.0625}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &6164100367593482418
 MonoBehaviour:
@@ -183,3 +183,4 @@ MonoBehaviour:
   coinAmount: 0
   nonPickupCoin: {fileID: 3034836028946227418, guid: 72b551e3c6be04b2782f1f62737b4295,
     type: 3}
+  coinManager: {fileID: 0}

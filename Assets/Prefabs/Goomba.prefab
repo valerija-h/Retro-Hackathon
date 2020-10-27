@@ -96,7 +96,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2089153666490881996}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e9fbf9fe715a23d42a86d7d71ad968b7, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -129,7 +129,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e9fbf9fe715a23d42a86d7d71ad968b7, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 1
-  isRight: 1
+  isRight: 0
   startMovingDistanceX: 20
   mario: {fileID: 0}
 --- !u!95 &3681554405555710595
@@ -214,7 +214,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.000000059604645, y: 0.37124074}
+  m_Offset: {x: 0, y: 0.5027064}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -225,7 +225,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.68260324, y: 0.37087417}
+  m_Size: {x: 0.75, y: 0.1}
   m_EdgeRadius: 0
 --- !u!114 &4564565907127739831
 MonoBehaviour:
