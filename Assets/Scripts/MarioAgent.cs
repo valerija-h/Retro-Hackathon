@@ -82,7 +82,7 @@ public class MarioAgent : Agent
 
         // move the player
         playerRigidbody.velocity = new Vector2(movement * movementSpeed, playerRigidbody.velocity.y);
-
+        
         // player jump
         if (jump == 1 && isGrounded)
         {
@@ -93,6 +93,7 @@ public class MarioAgent : Agent
         //TODO - maybe change the location of the animator changes - to test
         if (movement != 0 && isGrounded) { ChangeAnimatorState("running"); }
         else if (movement == 0 && isGrounded) { ChangeAnimatorState("idle"); }
+        if (!isGrounded) { ChangeAnimatorState("jumping"); }
 
         // penalty given each step to encourage agent to finish task quickly
         AddReward(-1f / MaxStep);
@@ -315,12 +316,19 @@ public class MarioAgent : Agent
     private bool IsGrounded()
     {
         int mask = 1 << LayerMask.NameToLayer("Ground");
-        //Debug.DrawRay(transform.position, Vector2.down * raycastDistance, Color.green);
-        if (Physics2D.Raycast(transform.position, Vector2.down, raycastDistance, mask))
+        float castDist = 0.4125f;
+        if (isBig) { castDist = 0.5f; }
+
+        Vector3 leftCastPos = transform.position + new Vector3(-castDist, 0f, 0f);
+        Vector3 rightCastPos = transform.position + new Vector3(castDist, 0f, 0f);
+        Debug.DrawRay(leftCastPos, Vector2.down * raycastDistance, Color.green);
+        Debug.DrawRay(rightCastPos, Vector2.down * raycastDistance, Color.green);
+        RaycastHit2D leftCast = Physics2D.Raycast(leftCastPos, Vector2.down, raycastDistance, mask);
+        RaycastHit2D rightCast = Physics2D.Raycast(rightCastPos, Vector2.down, raycastDistance, mask);
+        if (leftCast || rightCast)
         {
             return true;
         }
-        ChangeAnimatorState("jumping");
         return false;
     }
 
