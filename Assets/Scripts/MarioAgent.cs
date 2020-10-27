@@ -8,6 +8,8 @@ public class MarioAgent : Agent
 {
     public float movementSpeed; // how fast Mario moves
     public float jumpForce; // Mario's jump force
+    public float fallMultiplier;
+    public float lowJumpMultiplier;
     public Camera camera;
 
     public float coinReward;
@@ -32,6 +34,7 @@ public class MarioAgent : Agent
     public GameObject allMysteryBlocks;
     public GameObject allBrickBlocks;
     public GameObject allGoombas;
+
     private Vector3 originalCamPosition;
     private float raycastDistance = 0.6f;
     private bool isHit = false; // invicibility after being hit
@@ -57,8 +60,8 @@ public class MarioAgent : Agent
         // get the action index for movement and jumping
         float leftmovement = vectorAction[0];
         float rightmovement = vectorAction[1];
-        int jump = Mathf.FloorToInt(vectorAction[2]);
-        int movement = 0; // direction of movement L or R
+        float jump = Mathf.Round(vectorAction[2]);
+        int movement = 0; // direction of movement L or Rx
 
         // the x start bound of the camera
         cameraCurrPos = camera.transform.position.x;
@@ -88,7 +91,7 @@ public class MarioAgent : Agent
         playerRigidbody.velocity = new Vector2(movement * movementSpeed, playerRigidbody.velocity.y);
 
         // player jump
-        if (jump == 1 && isGrounded)
+        if (jump >= 1 && isGrounded)
         {
             //TODO -- Add jump sound
             playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, jumpForce);
@@ -98,6 +101,15 @@ public class MarioAgent : Agent
         if (movement != 0 && isGrounded) { ChangeAnimatorState("running"); }
         else if (movement == 0 && isGrounded) { ChangeAnimatorState("idle"); }
         if (!isGrounded) { ChangeAnimatorState("jumping"); }
+
+        if (playerRigidbody.velocity.y < 0)
+        {
+            playerRigidbody.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+        else if (playerRigidbody.velocity.y > 0 && jump <= 0)
+        {
+            playerRigidbody.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
 
         // penalty given each step to encourage agent to finish task quickly
         AddReward(-1f / MaxStep);
