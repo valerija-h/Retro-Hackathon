@@ -207,6 +207,7 @@ public class MarioAgent : Agent
 
     private void Start()
     {
+        Physics2D.IgnoreLayerCollision( 9, 11, true); // make goombas and collectibles ignore each other
         agentStartPosition = this.transform.position; // collect position of agent at start
         playerRigidbody = GetComponent<Rigidbody2D>();
         //coinManager = FindObjectOfType<CoinManager>();

@@ -121,12 +121,15 @@ public class GoombaManager : MonoBehaviour
         gameObject.tag = "Untagged"; // remove tag so Mario not detected
         scoreManager.AddScore("goomba");
         mario.GetComponent<MarioAgent>().RewardGoombaKill();
+        Physics2D.IgnoreLayerCollision( 9, 10, true); // make goombas ignore mario
         //TODO - play sound effect maybe?
         animator.SetBool("isHit", true);
 
         yield return new WaitForSeconds(0.5f);
 
         gameObject.SetActive(false);
+        Physics2D.IgnoreLayerCollision( 9, 10, false); // make goombas ignore mario
+
     }
 
     // tell Mario if it hit goomba!
