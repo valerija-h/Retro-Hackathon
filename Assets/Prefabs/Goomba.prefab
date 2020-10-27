@@ -179,6 +179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1398380535782524664}
   - component: {fileID: 106666300781652239}
+  - component: {fileID: 4564565907127739831}
   m_Layer: 9
   m_Name: GameObject
   m_TagString: goombaTop
@@ -209,7 +210,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 6417655660245740204}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1990c3cc93cdd4ecf907f1686e9df813, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -226,3 +227,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.68260324, y: 0.37087417}
   m_EdgeRadius: 0
+--- !u!114 &4564565907127739831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6417655660245740204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d52151688664b451382a39889c8dcbc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

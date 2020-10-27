@@ -31,6 +31,7 @@ public class MarioAgent : Agent
 
     public GameObject allMysteryBlocks;
     public GameObject allBrickBlocks;
+    public GameObject allGoombas;
     private Vector3 originalCamPosition;
     private float raycastDistance = 0.6f;
     private bool isHit = false; // invicibility after being hit
@@ -68,13 +69,16 @@ public class MarioAgent : Agent
         else
         {
             // only move left if Mario will not go out of bounds
-            if (leftmovement >= 1f) {
-                if(transform.position.x > cameraXStart) {
+            if (leftmovement >= 1f)
+            {
+                if (transform.position.x > cameraXStart)
+                {
                     movement = -1;
                     AddReward(moveLeftReward);
                 }
             }
-            if (rightmovement >= 1f) {
+            if (rightmovement >= 1f)
+            {
                 movement = 1;
                 AddReward(moveRightReward);
             }
@@ -82,7 +86,7 @@ public class MarioAgent : Agent
 
         // move the player
         playerRigidbody.velocity = new Vector2(movement * movementSpeed, playerRigidbody.velocity.y);
-        
+
         // player jump
         if (jump == 1 && isGrounded)
         {
@@ -119,6 +123,7 @@ public class MarioAgent : Agent
         //call reset functions of all the blocks - mystery, brick and goomba!
         ResetAllObjects(allMysteryBlocks, "mysteryBlock");
         ResetAllObjects(allBrickBlocks, "brickBlock");
+        ResetAllObjects(allGoombas, "goomba");
         DestroyAll("mushroom");
         DestroyAll("flower");
         timeManager.ResetTime();
@@ -227,19 +232,17 @@ public class MarioAgent : Agent
                 score = scoreManager.GetScore();
                 AddReward(flowerReward);
                 break;
-            case "goombaTop":
-                collision.gameObject.GetComponentInParent<GoombaManager>().HitGoomba();
-                score = scoreManager.GetScore();
-                AddReward(killGoombaReward);
-                break;
+            //case "goombaTop":
+            //collision.gameObject.GetComponentInParent<GoombaManager>().HitGoomba();
+            //score = scoreManager.GetScore();
+            //AddReward(killGoombaReward);
+            //Debug.Log("Boing");
+            //break;
             case "goomba":
-                if (isBig)
-                {
-                    StartCoroutine(GetHit());
-                }
+                AddReward(hitByGoombaReward);
+                if (isBig) { StartCoroutine(GetHit()); }
                 else
                 {
-                    AddReward(hitByGoombaReward);
                     //TODO - play death animation with coroutine then end episode
                     EndEpisode();
                 }
@@ -271,6 +274,14 @@ public class MarioAgent : Agent
         }
     }
 
+    // activated to reward Mario for killing Goomba
+    public void RewardGoombaKill()
+    {
+        AddReward(killGoombaReward);
+        score = scoreManager.GetScore();
+    }
+
+
     private void ChangeToBigMario()
     {
         if (!isBig)
@@ -299,16 +310,13 @@ public class MarioAgent : Agent
     IEnumerator GetHit()
     {
         isHit = true;
-        playerRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
-        gameObject.GetComponent<Collider2D>().enabled = false;
+        Physics2D.IgnoreLayerCollision(10, 9, true);
         ChangeToSmallMario();
 
         // TODO - play any sounds or animation
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(3f);
 
-        // TODO - check if he can move after he is hit during invincibility
-        gameObject.GetComponent<Collider2D>().enabled = true;
-        playerRigidbody.constraints = previousConstraints; // set to previous state
+        Physics2D.IgnoreLayerCollision(10, 9, false);
         isHit = false;
     }
 
@@ -332,7 +340,8 @@ public class MarioAgent : Agent
         return false;
     }
 
-    public void RewardMovement() {
+    public void RewardMovement()
+    {
         AddReward(moveCameraRightReward);
     }
 

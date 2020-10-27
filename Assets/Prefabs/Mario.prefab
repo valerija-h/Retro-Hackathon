@@ -17,9 +17,9 @@ GameObject:
   - component: {fileID: 9181427176456526198}
   - component: {fileID: 107510369362073534}
   - component: {fileID: 1707564221201057471}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mario
-  m_TagString: Untagged
+  m_TagString: mario
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

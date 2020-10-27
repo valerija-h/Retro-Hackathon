@@ -97,7 +97,8 @@ public class GoombaManager : MonoBehaviour
     public void ResetGoomba()
     {
         gameObject.SetActive(true);
-        animator.SetBool("IsHit", false);
+        gameObject.tag = "goomba";
+        animator.SetBool("isHit", false);
         isMoving = false;
         isHit = false; // if he is hit by Mario
         transform.position = originalPosition;
@@ -117,12 +118,20 @@ public class GoombaManager : MonoBehaviour
     IEnumerator KillGoomba()
     {
         isHit = true;
+        gameObject.tag = "Untagged"; // remove tag so Mario not detected
         scoreManager.AddScore("goomba");
+        mario.GetComponent<MarioAgent>().RewardGoombaKill();
         //TODO - play sound effect maybe?
-        animator.SetBool("IsHit", true);
+        animator.SetBool("isHit", true);
 
         yield return new WaitForSeconds(0.5f);
 
         gameObject.SetActive(false);
+    }
+
+    // tell Mario if it hit goomba!
+    public bool IsHit()
+    {
+        return isHit;
     }
 }

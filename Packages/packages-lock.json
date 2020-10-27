@@ -124,7 +124,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ml-agents": {
-      "version": "file:D:/ml-agents-release_8/com.unity.ml-agents",
+      "version": "file:/Users/valerija/Downloads/ml-agents-release_8/com.unity.ml-agents",
       "depth": 0,
       "source": "local",
       "dependencies": {
