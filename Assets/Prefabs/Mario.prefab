@@ -155,9 +155,9 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
   m_Model: {fileID: 0}
-  m_InferenceDevice: 0
-  m_BehaviorType: 1
-  m_BehaviorName: My Behavior
+  m_InferenceDevice: 1
+  m_BehaviorType: 0
+  m_BehaviorName: Score Multi-Learning
   TeamId: 0
   m_UseChildSensors: 1
   m_UseChildActuators: 1
@@ -177,19 +177,22 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: -1
+  MaxStep: 30000
   movementSpeed: 5.5
   jumpForce: 9
   camera: {fileID: 0}
-  coinReward: 0
+  coinReward: 0.2
   killGoombaReward: 0
   hitByGoombaReward: 0
   hitByKillboxReward: 0
-  flagReward: 0
-  mushroomReward: 0
-  flowerReward: 0
+  flagReward: 10
+  mushroomReward: 1
+  flowerReward: 1
   mysteryBlockReward: 0
-  brickBlockReward: 0
+  brickBlockReward: 0.05
+  moveRightReward: 0
+  moveCameraRightReward: 0.0005
+  moveLeftReward: 0
   smallMarioSprite: {fileID: 3231394599993212667, guid: 0592ebd31c88140c79bd9cce50c2e620,
     type: 3}
   bigMarioSprite: {fileID: -8987971270192609031, guid: 0592ebd31c88140c79bd9cce50c2e620,
@@ -198,6 +201,9 @@ MonoBehaviour:
   bigMarioColliderSize: {x: 1, y: 2}
   allMysteryBlocks: {fileID: 0}
   allBrickBlocks: {fileID: 0}
+  coinManager: {fileID: 0}
+  scoreManager: {fileID: 0}
+  academy: {fileID: 0}
 --- !u!114 &9181427176456526198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,13 +261,14 @@ MonoBehaviour:
   - killbox
   - mushroom
   - flower
+  - ground
   m_RaysPerDirection: 20
   m_MaxRayDegrees: 180
   m_SphereCastRadius: 0.5
   m_RayLength: 20
   m_RayLayerMask:
     serializedVersion: 2
-    m_Bits: 768
-  m_ObservationStacks: 1
+    m_Bits: 769
+  m_ObservationStacks: 2
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}

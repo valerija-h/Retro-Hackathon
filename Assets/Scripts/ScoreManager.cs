@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    public Text textOfScore; // text object
+    //public Text textOfScore; // text object
     public int coinScore;
     public int goombaScore;
     public int powerupScore;
@@ -14,13 +14,13 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
-        DisplayScore();
+        //DisplayScore();
     }
 
     public void ResetScore()
     {
         numOfScore = 0;
-        DisplayScore();
+        //DisplayScore();
     }
 
     public void AddScore(string tagName)
@@ -40,7 +40,7 @@ public class ScoreManager : MonoBehaviour
             default:
                 break;
         }
-        DisplayScore();
+        //DisplayScore();
     }
 
     public int GetScore()
@@ -59,6 +59,6 @@ public class ScoreManager : MonoBehaviour
         else if (numOfScore <= 99999) { toDisplay += "0"; }
         toDisplay += numOfScore.ToString();
 
-        textOfScore.text = toDisplay;
+        //textOfScore.text = toDisplay;
     }
 }

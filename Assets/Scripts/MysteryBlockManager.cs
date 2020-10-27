@@ -14,14 +14,15 @@ public class MysteryBlockManager : MonoBehaviour
     private bool wasHit = false;
     private Animator animator;
     private float blockHeight; // height of MysteryBlock
-    private CoinManager coinManager;
+    public CoinManager coinManager;
+    public GameObject academy;
 
     void Start()
     {
         startSprite = this.GetComponent<SpriteRenderer>().sprite;
         animator = this.GetComponent<Animator>();
         blockHeight = GetComponent<SpriteRenderer>().bounds.size.y;
-        coinManager = FindObjectOfType<CoinManager>(); 
+        //coinManager = FindObjectOfType<CoinManager>(); 
     }
 
     public void HitMysteryBlock(bool isBig) 
@@ -40,18 +41,21 @@ public class MysteryBlockManager : MonoBehaviour
             }
             else
             {
+                GameObject created;
                 if (isBig)
                 {
                     // spawn flower
-                    Instantiate(flower, transform.position + new Vector3(0f, blockHeight, 0f), transform.rotation);
+                    created = Instantiate(flower, transform.position + new Vector3(0f, blockHeight, 0f), transform.rotation);
+
                     // TODO - add animation
                 }
                 else
                 {
                     // spawn mushroom
-                    Instantiate(mushroom, transform.position + new Vector3(0f, blockHeight, 0f), transform.rotation);
+                    created = Instantiate(mushroom, transform.position + new Vector3(0f, blockHeight, 0f), transform.rotation);
                     // TODO - add animation and script to mushroom so they walk
                 }
+                created.transform.parent = academy.transform;
             }
         }
     }

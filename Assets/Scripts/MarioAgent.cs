@@ -19,8 +19,9 @@ public class MarioAgent : Agent
     public float flowerReward;
     public float mysteryBlockReward;
     public float brickBlockReward;
-    public float movementRightReward; //rewards when camera moves right
-    public float moveBeforeCameraReward; // reward for moving too far left (out of camera bounds)
+    public float moveRightReward;
+    public float moveCameraRightReward; //rewards when camera moves right
+    public float moveLeftReward; // reward for moving too far left (out of camera bounds)
 
     public Sprite smallMarioSprite;
     public Sprite bigMarioSprite;
@@ -40,8 +41,9 @@ public class MarioAgent : Agent
     private Rigidbody2D playerRigidbody;
     private RigidbodyConstraints2D previousConstraints;
     private Animator animator;
-    private CoinManager coinManager;
-    private ScoreManager scoreManager;
+    public CoinManager coinManager;
+    public ScoreManager scoreManager;
+    public GameObject academy;
     private float cameraXStart; // the starting X bound of the camera - changes as Mario moves
     private float cameraCurrPos;
 
@@ -66,11 +68,13 @@ public class MarioAgent : Agent
             if (leftmovement >= 1f) {
                 if(transform.position.x > cameraXStart) {
                     movement = -1;
-                } else {
-                    AddReward(moveBeforeCameraReward);
+                    AddReward(moveLeftReward);
                 }
             }
-            if (rightmovement >= 1f) { movement = 1; }
+            if (rightmovement >= 1f) {
+                movement = 1;
+                AddReward(moveRightReward);
+            }
         }
 
         // move the player
@@ -119,11 +123,19 @@ public class MarioAgent : Agent
     // destroy all objects with a specific tag
     private void DestroyAll(string currTag)
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(currTag);
-        for (int i = 0; i < enemies.Length; i++)
+        Transform t = academy.transform;
+        foreach (Transform tr in t)
         {
-            Destroy(enemies[i]);
+            if (tr.tag == currTag)
+            {
+                Destroy(tr.gameObject);
+            }
         }
+        //GameObject[] enemies = GameObject.FindGameObjectsWithTag(currTag);
+        //for (int i = 0; i < enemies.Length; i++)
+        //{
+        //    Destroy(enemies[i]);
+        //}
     }
 
     private void ResetAllObjects(GameObject currGameObject, string tagName)
@@ -164,8 +176,8 @@ public class MarioAgent : Agent
         sensor.AddObservation(isBig);
         sensor.AddObservation(isHit);
         sensor.AddObservation(isGrounded);
-        sensor.AddObservation(cameraXStart);
-        sensor.AddObservation(cameraCurrPos);
+        //sensor.AddObservation(cameraXStart);
+        //sensor.AddObservation(cameraCurrPos);
 
         sensor.AddObservation(coins);
         sensor.AddObservation(score);
@@ -177,8 +189,8 @@ public class MarioAgent : Agent
     {
         agentStartPosition = this.transform.position; // collect position of agent at start
         playerRigidbody = GetComponent<Rigidbody2D>();
-        coinManager = FindObjectOfType<CoinManager>();
-        scoreManager = FindObjectOfType<ScoreManager>();
+        //coinManager = FindObjectOfType<CoinManager>();
+        //scoreManager = FindObjectOfType<ScoreManager>();
         previousConstraints = playerRigidbody.constraints;
         animator = GetComponent<Animator>();
         originalCamPosition = camera.transform.position;
@@ -308,7 +320,7 @@ public class MarioAgent : Agent
     }
 
     public void RewardMovement() {
-        AddReward(movementRightReward);
+        AddReward(moveCameraRightReward);
     }
 
 }

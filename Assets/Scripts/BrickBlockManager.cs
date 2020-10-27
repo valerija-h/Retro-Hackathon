@@ -9,12 +9,12 @@ public class BrickBlockManager : MonoBehaviour
 
     private bool wasHit = false;
     private float blockHeight; // height of MysteryBlock
-    private CoinManager coinManager;
+    public CoinManager coinManager;
 
     private void Start()
     {
         blockHeight = GetComponent<SpriteRenderer>().bounds.size.y;
-        coinManager = FindObjectOfType<CoinManager>();
+        //coinManager = FindObjectOfType<CoinManager>();
     }
 
     public void HitBrickBlock(bool isBig)

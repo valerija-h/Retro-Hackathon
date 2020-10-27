@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class CoinManager : MonoBehaviour
 {
-    public Text textOfCoin; // text object
+    //public Text textOfCoin; // text object
     private int numOfCoin = 0; // number of coins
-    private ScoreManager scoreManager;
+    public ScoreManager scoreManager;
 
     void Start()
     {
-        DisplayCoins();
-        scoreManager = FindObjectOfType<ScoreManager>();
+        //DisplayCoins();
+        //scoreManager = FindObjectOfType<ScoreManager>();
     }
 
     // returns how many coins there are
@@ -26,19 +26,19 @@ public class CoinManager : MonoBehaviour
     {
         scoreManager.AddScore("coin");
         numOfCoin += amount;
-        DisplayCoins();
+        //DisplayCoins();
     }
 
     // resets the coina
     public void ResetCoins()
     {
         numOfCoin = 0;
-        DisplayCoins();
+        //DisplayCoins();
     }
 
-    // displays the current number if coins
-    private void DisplayCoins()
-    {
-        textOfCoin.text = "x" + numOfCoin.ToString();
-    }
+    //// displays the current number if coins
+    //private void DisplayCoins()
+    //{
+    //    textOfCoin.text = "x" + numOfCoin.ToString();
+    //}
 }
