@@ -77,12 +77,14 @@ public class MarioAgent : Agent
                 if (transform.position.x > cameraXStart)
                 {
                     movement = -1;
+                    transform.localRotation = Quaternion.Euler(0, 180, 0);
                     AddReward(moveLeftReward);
                 }
             }
             if (rightmovement >= 1f)
             {
                 movement = 1;
+                transform.localRotation = Quaternion.Euler(0, 0, 0);
                 AddReward(moveRightReward);
             }
         }
@@ -178,15 +180,15 @@ public class MarioAgent : Agent
         switch (action)
         {
             case "running":
-                if (isBig) { animator.SetInteger("movementState", 1); }
+                if (isBig) { animator.SetInteger("movementState", 4); }
                 else { animator.SetInteger("movementState", 1); }
                 break;
             case "jumping":
-                if (isBig) { animator.SetInteger("movementState", 2); }
+                if (isBig) { animator.SetInteger("movementState", 5); }
                 else { animator.SetInteger("movementState", 2); }
                 break;
             default:
-                if (isBig) { animator.SetInteger("movementState", 0); }
+                if (isBig) { animator.SetInteger("movementState", 3); }
                 else { animator.SetInteger("movementState", 0); }
                 break;
         }
