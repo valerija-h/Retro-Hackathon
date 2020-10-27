@@ -228,6 +228,9 @@ public class MarioAgent : Agent
     {
         isGrounded = IsGrounded();
         timeLeft = timeManager.GetTimeLeft();
+        if (timeLeft <= 0) {
+            EndEpisode();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -258,13 +261,7 @@ public class MarioAgent : Agent
             //Debug.Log("Boing");
             //break;
             case "goomba":
-                AddReward(hitByGoombaReward);
-                if (isBig) { StartCoroutine(GetHit()); }
-                else
-                {
-                    //TODO - play death animation with coroutine then end episode
-                    EndEpisode();
-                }
+                StartCoroutine(CheckValidHit(collision));
                 break;
             case "killbox":
                 AddReward(hitByKillboxReward);
@@ -339,6 +336,23 @@ public class MarioAgent : Agent
         playerRigidbody.constraints = previousConstraints; // set to previous state
         yield return new WaitForSeconds(0.5f);
         Physics2D.IgnoreLayerCollision(10, 9, false);
+
+    }
+
+    // makes Mario immune to damage temporarily
+    IEnumerator CheckValidHit(Collision2D collision)
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (!collision.gameObject.GetComponent<GoombaManager>().IsHit())
+        {
+            AddReward(hitByGoombaReward);
+            if (isBig) { StartCoroutine(GetHit()); }
+            else
+            {
+                //TODO - play death animation with coroutine then end episode
+                EndEpisode();
+            }
+        }
 
     }
 
