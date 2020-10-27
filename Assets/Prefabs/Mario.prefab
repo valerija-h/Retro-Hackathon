@@ -149,14 +149,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 8
+    VectorObservationSize: 9
     NumStackedVectorObservations: 1
     VectorActionSize: 020000000200000002000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
   m_Model: {fileID: 0}
   m_InferenceDevice: 1
-  m_BehaviorType: 0
+  m_BehaviorType: 1
   m_BehaviorName: Score Multi-Learning
   TeamId: 0
   m_UseChildSensors: 1
@@ -193,6 +193,7 @@ MonoBehaviour:
   moveRightReward: 0
   moveCameraRightReward: 0.0005
   moveLeftReward: 0
+  timeLeftReward: 0
   smallMarioSprite: {fileID: 3231394599993212667, guid: 0592ebd31c88140c79bd9cce50c2e620,
     type: 3}
   bigMarioSprite: {fileID: -8987971270192609031, guid: 0592ebd31c88140c79bd9cce50c2e620,
@@ -204,6 +205,7 @@ MonoBehaviour:
   coinManager: {fileID: 0}
   scoreManager: {fileID: 0}
   academy: {fileID: 0}
+  timeManager: {fileID: 0}
 --- !u!114 &9181427176456526198
 MonoBehaviour:
   m_ObjectHideFlags: 0

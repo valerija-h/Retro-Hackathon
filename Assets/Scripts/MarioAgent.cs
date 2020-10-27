@@ -22,6 +22,7 @@ public class MarioAgent : Agent
     public float moveRightReward;
     public float moveCameraRightReward; //rewards when camera moves right
     public float moveLeftReward; // reward for moving too far left (out of camera bounds)
+    public float timeLeftReward; // multiplies by timeLeft
 
     public Sprite smallMarioSprite;
     public Sprite bigMarioSprite;
@@ -37,6 +38,7 @@ public class MarioAgent : Agent
     private bool isGrounded = true;
     private int score = 0;
     private int coins = 0;
+    private float timeLeft;
     private Vector3 agentStartPosition; // starting position of agent
     private Rigidbody2D playerRigidbody;
     private RigidbodyConstraints2D previousConstraints;
@@ -44,6 +46,7 @@ public class MarioAgent : Agent
     public CoinManager coinManager;
     public ScoreManager scoreManager;
     public GameObject academy;
+    public TimeManager timeManager;
     private float cameraXStart; // the starting X bound of the camera - changes as Mario moves
     private float cameraCurrPos;
 
@@ -117,10 +120,13 @@ public class MarioAgent : Agent
         ResetAllObjects(allBrickBlocks, "brickBlock");
         DestroyAll("mushroom");
         DestroyAll("flower");
+        timeManager.ResetTime();
+        timeLeft = timeManager.GetTimeLeft();
+        timeManager.StartTimer();
         //TODO - reset all goombas!
     }
 
-    // destroy all objects with a specific tag
+    // destroy all objects with a specific tag in an academy
     private void DestroyAll(string currTag)
     {
         Transform t = academy.transform;
@@ -131,11 +137,6 @@ public class MarioAgent : Agent
                 Destroy(tr.gameObject);
             }
         }
-        //GameObject[] enemies = GameObject.FindGameObjectsWithTag(currTag);
-        //for (int i = 0; i < enemies.Length; i++)
-        //{
-        //    Destroy(enemies[i]);
-        //}
     }
 
     private void ResetAllObjects(GameObject currGameObject, string tagName)
@@ -176,6 +177,7 @@ public class MarioAgent : Agent
         sensor.AddObservation(isBig);
         sensor.AddObservation(isHit);
         sensor.AddObservation(isGrounded);
+        sensor.AddObservation(timeLeft);
         //sensor.AddObservation(cameraXStart);
         //sensor.AddObservation(cameraCurrPos);
 
@@ -194,11 +196,13 @@ public class MarioAgent : Agent
         previousConstraints = playerRigidbody.constraints;
         animator = GetComponent<Animator>();
         originalCamPosition = camera.transform.position;
+        timeManager.StartTimer();
     }
 
     private void Update()
     {
         isGrounded = IsGrounded();
+        timeLeft = timeManager.GetTimeLeft();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -258,6 +262,7 @@ public class MarioAgent : Agent
             case "endFlag":
                 //TODO - play end flag animation, sounds then end episode?
                 AddReward(flagReward);
+                AddReward(timeLeft * timeLeftReward); //add reward for doing it before timeLeft
                 EndEpisode();
                 break;
             default:
