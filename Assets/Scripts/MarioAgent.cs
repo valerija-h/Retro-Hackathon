@@ -87,14 +87,18 @@ public class MarioAgent : Agent
             }
         }
 
-        // move the player
-        playerRigidbody.velocity = new Vector2(movement * movementSpeed, playerRigidbody.velocity.y);
-
-        // player jump
-        if (jump >= 1 && isGrounded)
+        if (!isHit)
         {
-            //TODO -- Add jump sound
-            playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, jumpForce);
+            // move the player
+            playerRigidbody.velocity = new Vector2(movement * movementSpeed, playerRigidbody.velocity.y);
+
+            // player jump
+            if (jump >= 1 && isGrounded)
+            {
+                //TODO -- Add jump sound
+                playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, jumpForce);
+            }
+        
         }
 
         //TODO - maybe change the location of the animator changes - to test
@@ -324,13 +328,16 @@ public class MarioAgent : Agent
     {
         isHit = true;
         Physics2D.IgnoreLayerCollision(10, 9, true);
+        playerRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
         ChangeToSmallMario();
 
         // TODO - play any sounds or animation
-        yield return new WaitForSeconds(3f);
-
-        Physics2D.IgnoreLayerCollision(10, 9, false);
+        yield return new WaitForSeconds(2f);
         isHit = false;
+        playerRigidbody.constraints = previousConstraints; // set to previous state
+        yield return new WaitForSeconds(0.5f);
+        Physics2D.IgnoreLayerCollision(10, 9, false);
+
     }
 
     // check if Mario is grounded
