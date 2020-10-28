@@ -17,8 +17,18 @@ public class MenuManager : MonoBehaviour
         
     }
 
-    public void PlayGame()
+    public void LoadPlayer()
     {
         SceneManager.LoadScene(2, LoadSceneMode.Single);
+    }
+
+    public void LoadAI()
+    {
+        //TODO - ADD LOADSCENE FOR AI
+    }
+
+    public void LoadMainMenu()
+    {
+        //TODO - ADD LOADSCENE FOR MAIN MENU
     }
 }
