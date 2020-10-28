@@ -302,6 +302,7 @@ public class MarioAgent : Agent
     {
         if (!isBig)
         {
+            StartCoroutine(PlayOtherAnimations("becomeBig"));
             this.GetComponent<SpriteRenderer>().sprite = bigMarioSprite;
             this.GetComponent<BoxCollider2D>().size = bigMarioColliderSize;
             isBig = true;
@@ -327,16 +328,40 @@ public class MarioAgent : Agent
     {
         isHit = true;
         Physics2D.IgnoreLayerCollision(10, 9, true);
-        playerRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+        //playerRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+        playerRigidbody.velocity = new Vector2(0f, 0f); // make him stop moving
         ChangeToSmallMario();
-
-        // TODO - play any sounds or animation
-        yield return new WaitForSeconds(2f);
+        animator.SetInteger("otherState", 2);
+        yield return new WaitForSeconds(1f);
         isHit = false;
-        playerRigidbody.constraints = previousConstraints; // set to previous state
-        yield return new WaitForSeconds(0.5f);
+        //playerRigidbody.constraints = previousConstraints; // set to previous state
+        yield return new WaitForSeconds(0.3f);
         Physics2D.IgnoreLayerCollision(10, 9, false);
+        animator.SetInteger("otherState", 0);
 
+    }
+
+    IEnumerator PlayOtherAnimations(string action) {
+        switch (action) {
+            case "becomeBig":
+                animator.SetInteger("otherState", 1);
+                yield return new WaitForSeconds(0.6f);
+                animator.SetInteger("otherState", 0);
+                break;
+            case "death":
+                isHit = true;
+                playerRigidbody.velocity = new Vector2(0f, 5f); // make him stop moving
+                Physics2D.IgnoreLayerCollision(10, 9, true);
+                this.GetComponent<BoxCollider2D>().enabled = false;
+                animator.SetInteger("otherState", 3);
+                yield return new WaitForSeconds(1f);
+                Physics2D.IgnoreLayerCollision(10, 9, false);
+                animator.SetInteger("otherState", 0);
+                this.GetComponent<BoxCollider2D>().enabled = true;
+                isHit = false;
+                EndEpisode();
+                break;
+        }
     }
 
     // makes Mario immune to damage temporarily
@@ -349,8 +374,7 @@ public class MarioAgent : Agent
             if (isBig) { StartCoroutine(GetHit()); }
             else
             {
-                //TODO - play death animation with coroutine then end episode
-                EndEpisode();
+                StartCoroutine(PlayOtherAnimations("death"));
             }
         }
 

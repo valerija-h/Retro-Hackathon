@@ -59,7 +59,9 @@ public class GoombaManager : MonoBehaviour
             if (!isRight) { movement = -1; }
 
             // move the player
-            goombaRigidbody.velocity = new Vector2(movement * movementSpeed, goombaRigidbody.velocity.y);
+            //goombaRigidbody.velocity = new Vector2(movement * movementSpeed, goombaRigidbody.velocity.y);
+            this.transform.position += new Vector3(movement, 0f, 0f) * Time.deltaTime * movementSpeed;
+            goombaRigidbody.velocity = new Vector2(0f, goombaRigidbody.velocity.y);
 
         }
     }
