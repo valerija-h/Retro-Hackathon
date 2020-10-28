@@ -12,10 +12,12 @@ public class SoundManager : MonoBehaviour
     public AudioClip smallJump;
     public AudioClip death;
     public AudioClip getHit;
+    public AudioClip getCoin;
     public AudioClip getPowerUp;
     public AudioClip appearPowerUp;
     public AudioClip enemyStomp;
     public AudioClip breakBrick;
+    public AudioClip bumpBlock;
     public AudioClip reachFlag;
     private AudioSource audioSource;
 
@@ -41,6 +43,9 @@ public class SoundManager : MonoBehaviour
             case "getHit":
                 soundEffectClip = getHit;
                 break;
+            case "getCoin":
+                soundEffectClip = getCoin;
+                break;
             case "reachFlag":
                 soundEffectClip = reachFlag;
                 break;
@@ -49,6 +54,9 @@ public class SoundManager : MonoBehaviour
                 break;
             case "breakBrick":
                 soundEffectClip = breakBrick;
+                break;
+            case "bumpBlock":
+                soundEffectClip = bumpBlock;
                 break;
             default:
                 break;
@@ -63,6 +71,7 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
     }
 
 

@@ -16,19 +16,22 @@ public class MysteryBlockManagerWithSound : MonoBehaviour
     private float blockHeight; // height of MysteryBlock
     private CoinManagerWithSound coinManager;
     public GameObject academy;
+    private SoundManager soundManager;
 
     void Start()
     {
         startSprite = this.GetComponent<SpriteRenderer>().sprite;
         animator = this.GetComponent<Animator>();
         blockHeight = GetComponent<SpriteRenderer>().bounds.size.y;
-        coinManager = FindObjectOfType<CoinManagerWithSound>(); 
+        coinManager = FindObjectOfType<CoinManagerWithSound>();
+        soundManager = FindObjectOfType<SoundManager>();
     }
 
     public void HitMysteryBlock(bool isBig) 
     {
         if (!wasHit)
         {
+            soundManager.PlaySoundEffect("bumpBlock");
             // TODO - add sound effects
             transform.GetChild(0).gameObject.SetActive(false); // set hit collider to false 
             animator.enabled = false;
@@ -41,6 +44,7 @@ public class MysteryBlockManagerWithSound : MonoBehaviour
             }
             else
             {
+                soundManager.PlaySoundEffect("appearPowerUp");
                 GameObject created;
                 if (isBig)
                 {

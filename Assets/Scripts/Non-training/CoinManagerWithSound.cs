@@ -8,11 +8,13 @@ public class CoinManagerWithSound : MonoBehaviour
     public Text textOfCoin; // text object
     private int numOfCoin = 0; // number of coins
     private ScoreManagerWithSound scoreManager;
+    private SoundManager soundManager;
 
     void Start()
     {
         DisplayCoins();
         scoreManager = FindObjectOfType<ScoreManagerWithSound>();
+        soundManager = FindObjectOfType<SoundManager>();
     }
 
     // returns how many coins there are
@@ -24,6 +26,7 @@ public class CoinManagerWithSound : MonoBehaviour
     // add an amount of coins
     public void AddCoins(int amount)
     {
+        soundManager.PlaySoundEffect("getCoin");
         scoreManager.AddScore("coin");
         numOfCoin += amount;
         DisplayCoins();

@@ -10,11 +10,13 @@ public class BrickBlockManagerWithSound : MonoBehaviour
     private bool wasHit = false;
     private float blockHeight; // height of MysteryBlock
     private CoinManagerWithSound coinManager;
+    private SoundManager soundManager;
 
     private void Start()
     {
         blockHeight = GetComponent<SpriteRenderer>().bounds.size.y;
         coinManager = FindObjectOfType<CoinManagerWithSound>();
+        soundManager = FindObjectOfType<SoundManager>();
     }
 
     public void HitBrickBlock(bool isBig)
@@ -49,6 +51,7 @@ public class BrickBlockManagerWithSound : MonoBehaviour
     private void DestroyBlock() {
         wasHit = true;
         // TODO - add animation of brick being popped
+        soundManager.PlaySoundEffect("breakBrick");
         gameObject.SetActive(false);
     }
 

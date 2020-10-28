@@ -16,6 +16,7 @@ public class GoombaManagerWithSound : MonoBehaviour
     private Vector3 originalPosition; // position at start of game
     private ScoreManagerWithSound scoreManager;
     private Animator animator;
+    private SoundManager soundManager;
 
     private void Start()
     {
@@ -24,6 +25,7 @@ public class GoombaManagerWithSound : MonoBehaviour
         originalPosition = this.transform.position;
         originalIsRight = this.isRight;
         animator = this.GetComponent<Animator>();
+        soundManager = FindObjectOfType<SoundManager>();
     }
 
     private void Update()
@@ -119,6 +121,7 @@ public class GoombaManagerWithSound : MonoBehaviour
     // plays animation of goomba death shortly
     IEnumerator KillGoomba()
     {
+        soundManager.PlaySoundEffect("enemyStomp");
         isHit = true;
         gameObject.tag = "Untagged"; // remove tag so Mario not detected
         scoreManager.AddScore("goomba");
