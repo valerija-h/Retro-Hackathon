@@ -61,6 +61,12 @@ public class SoundManager : MonoBehaviour
             case "bumpBlock":
                 soundEffectClip = bumpBlock;
                 break;
+            case "pause":
+                soundEffectClip = pause;
+                break;
+            case "clickButton":
+                soundEffectClip = clickButton;
+                break;
             default:
                 break;
         }
@@ -74,7 +80,6 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        ThemeSong("play");
     }
 
 
