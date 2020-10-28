@@ -367,8 +367,10 @@ public class MarioAgent : Agent
     // makes Mario immune to damage temporarily
     IEnumerator CheckValidHit(Collision2D collision)
     {
-        yield return new WaitForSeconds(0.1f);
-        if (!collision.gameObject.GetComponent<GoombaManager>().IsHit())
+        //playerRigidbody.velocity = new Vector2(0f, 0f);
+        yield return new WaitForSeconds(0f);
+        GoombaManager hit = collision.gameObject.GetComponent<GoombaManager>();
+        if (hit != null && !hit.IsHit())
         {
             AddReward(hitByGoombaReward);
             if (isBig) { StartCoroutine(GetHit()); }
