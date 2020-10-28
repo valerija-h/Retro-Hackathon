@@ -1,34 +1,63 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject loadingScreen;
+    public Text progressText;
+    public GameObject pauseMenu;
+    public GameObject instructions;
+    public GameObject AIMessage;
+    
+    public void LoadLevel (int sceneIndex)
     {
-        
+        StartCoroutine(LoadAsynchronously(sceneIndex));
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator LoadAsynchronously (int sceneIndex)
     {
-        
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Single);
+        progressText.text = "Loading...";
+        loadingScreen.SetActive(true);
+
+        while(!operation.isDone)
+        {
+
+            yield return null;
+
+        }
     }
 
-    public void LoadPlayer()
+    public void Pause()
     {
-        SceneManager.LoadScene(2, LoadSceneMode.Single);
+        Time.timeScale = 0;
+        pauseMenu.SetActive(true);
     }
 
-    public void LoadAI()
+    public void Instructions()
     {
-        //TODO - ADD LOADSCENE FOR AI
+        Time.timeScale = 0;
+        instructions.SetActive(true);
     }
 
-    public void LoadMainMenu()
+    public void closeInstructions()
     {
-        //TODO - ADD LOADSCENE FOR MAIN MENU
+        if(pauseMenu.active == true) { Time.timeScale = 0; }
+        else { Time.timeScale = 1; }
+        instructions.SetActive(false);
     }
+
+    public void Unpause()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
 }

@@ -5,19 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: e1ee5310a7deae948ab9daf6b4ab3ff9
-  - enabled: 0
-    path: Assets/Scenes/Level 1 - Several Agents.unity
-    guid: b9a5c5aa9bba2e040b703019f6d69058
-  - enabled: 0
-    path: Assets/Scenes/Level 1 - Training.unity
-    guid: 84c6d97a64437634386e2941434d85f7
-  - enabled: 0
-    path: Assets/Scenes/Level 1 - Several Agents With Goombas.unity
-    guid: 8ecb22fc9f121d54fadd8f3763ee48f4
   - enabled: 1
-    path: Assets/Scenes/Level 1 - Training with Goombas.unity
-    guid: a452c375de67d5e4296740db2f7f82bc
+    path: Assets/Scenes/Level 1 - Player.unity
+    guid: 9bf5dba2cf5e4ee42bdc9bf190accb26
+  - enabled: 1
+    path: Assets/Scenes/Level 1 - AI With Goombas.unity
+    guid: 85f7f3f75f7ff9e40a0acef989c22fa9
+  - enabled: 1
+    path: Assets/Scenes/Level 1 - AI WIthout Goombas.unity
+    guid: 3265c446edb9c2e42b115f8627462b01
   m_configObjects: {}

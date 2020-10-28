@@ -39,7 +39,7 @@ public class MarioAgentWithSound : Agent
     private float raycastDistance = 0.6f;
     private bool isHit = false; // invicibility after being hit
     private bool isBig = false; // size after collecting mushroom
-    private bool isGrounded = true;
+    private bool isGrounded = false;
     private int score = 0;
     private int coins = 0;
     private float timeLeft;
@@ -134,6 +134,7 @@ public class MarioAgentWithSound : Agent
 
     public override void OnEpisodeBegin()
     {
+        Physics2D.IgnoreLayerCollision(10, 9, false);
         this.transform.position = agentStartPosition; // reset agent's position
         ChangeToSmallMario();
         camera.transform.position = originalCamPosition;
@@ -152,6 +153,7 @@ public class MarioAgentWithSound : Agent
         timeManager.StartTimer();
         soundManager.ThemeSong("play");
         //TODO - reset all goombas!
+
     }
 
     // destroy all objects with a specific tag in an academy
@@ -365,7 +367,7 @@ public class MarioAgentWithSound : Agent
                 Physics2D.IgnoreLayerCollision(10, 9, true);
                 this.GetComponent<BoxCollider2D>().enabled = false;
                 animator.SetInteger("otherState", 3);
-                yield return new WaitForSeconds(2.5f);
+                yield return new WaitForSeconds(2f);
                 Physics2D.IgnoreLayerCollision(10, 9, false);
                 animator.SetInteger("otherState", 0);
                 this.GetComponent<BoxCollider2D>().enabled = true;
