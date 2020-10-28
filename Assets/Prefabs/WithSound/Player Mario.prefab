@@ -32,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7287838214846493542}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5849752, y: -3.2466826, z: 0}
+  m_LocalPosition: {x: -3.5849752, y: -1.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -259,10 +259,7 @@ MonoBehaviour:
   allMysteryBlocks: {fileID: 0}
   allBrickBlocks: {fileID: 0}
   allGoombas: {fileID: 0}
-  coinManager: {fileID: 0}
-  scoreManager: {fileID: 0}
   academy: {fileID: 0}
-  timeManager: {fileID: 0}
 --- !u!114 &5984153667557334108
 MonoBehaviour:
   m_ObjectHideFlags: 0
