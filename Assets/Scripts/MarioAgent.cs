@@ -369,17 +369,20 @@ public class MarioAgent : Agent
     {
         //playerRigidbody.velocity = new Vector2(0f, 0f);
         yield return new WaitForSeconds(0f);
-        GoombaManager hit = collision.gameObject.GetComponent<GoombaManager>();
-        if (hit != null && !hit.IsHit())
+        if (collision != null)
         {
-            AddReward(hitByGoombaReward);
-            if (isBig) { StartCoroutine(GetHit()); }
-            else
+            GoombaManager hit = collision.gameObject.GetComponent<GoombaManager>();
+            if (hit != null && !hit.IsHit())
             {
-                StartCoroutine(PlayOtherAnimations("death"));
+                AddReward(hitByGoombaReward);
+                if (isBig) { StartCoroutine(GetHit()); }
+                else
+                {
+                    StartCoroutine(PlayOtherAnimations("death"));
+                }
             }
         }
-
+    
     }
 
     // check if Mario is grounded
