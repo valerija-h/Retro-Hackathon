@@ -184,9 +184,9 @@ MonoBehaviour:
   lowJumpMultiplier: 2
   camera: {fileID: 0}
   coinReward: 0.2
-  killGoombaReward: 0.2
-  hitByGoombaReward: -5
-  hitByKillboxReward: -5
+  killGoombaReward: 0.1
+  hitByGoombaReward: 0
+  hitByKillboxReward: 0
   flagReward: 5
   mushroomReward: 1
   flowerReward: 1
