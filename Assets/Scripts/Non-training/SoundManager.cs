@@ -19,6 +19,9 @@ public class SoundManager : MonoBehaviour
     public AudioClip breakBrick;
     public AudioClip bumpBlock;
     public AudioClip reachFlag;
+    public AudioClip pause;
+    public AudioClip clickButton;
+
     private AudioSource audioSource;
 
     public void PlaySoundEffect(string soundEffect) {
@@ -71,7 +74,14 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        ThemeSong("play");
+    }
 
+
+    public void ThemeSong(string action)
+    { 
+        if (action == "play") { audioSource.Play(); }
+        if (action == "stop") { audioSource.Stop(); }
     }
 
 

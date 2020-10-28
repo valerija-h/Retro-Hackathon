@@ -150,6 +150,7 @@ public class MarioAgentWithSound : Agent
         timeManager.ResetTime();
         timeLeft = timeManager.GetTimeLeft();
         timeManager.StartTimer();
+        soundManager.ThemeSong("play");
         //TODO - reset all goombas!
     }
 
@@ -234,7 +235,7 @@ public class MarioAgentWithSound : Agent
         isGrounded = IsGrounded();
         timeLeft = timeManager.GetTimeLeft();
         if (timeLeft <= 0) {
-            EndEpisode();
+            StartCoroutine(PlayOtherAnimations("death"));
         }
     }
 
@@ -358,6 +359,7 @@ public class MarioAgentWithSound : Agent
                 break;
             case "death":
                 isHit = true;
+                soundManager.ThemeSong("stop");
                 soundManager.PlaySoundEffect("death");
                 playerRigidbody.velocity = new Vector2(0f, 5f); // make him stop moving
                 Physics2D.IgnoreLayerCollision(10, 9, true);
@@ -378,6 +380,7 @@ public class MarioAgentWithSound : Agent
         isHit = true;
         playerRigidbody.velocity = new Vector2(0f, 0f);
         this.transform.position += new Vector3(2f, 0f, 0f);
+        soundManager.ThemeSong("stop");
         soundManager.PlaySoundEffect("reachFlag");
         yield return new WaitForSeconds(4f);
         isHit = false;
