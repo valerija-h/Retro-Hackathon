@@ -17,4 +17,6 @@ The agent takes observations from it's environment in the form of Raycasts and c
 ### What are the limitations of your game?
 Due to time restraints, we weren't able to implement all aspects of the game that we wanted. We did not have time to implement underground levels, turtle enemies, invincibility, "Fire" Mario and multiple levels. We were however able to implement full functionalities of mystery blocks, brick blocks, goombas and basic game mechanics (such as dying, reaching the end, basic animations, keeping track of score, coins and time and so on..), although there might still be some occasional bugs which could be fixed given a bit more time.
 
-
+<p align="center">
+  <img src="https://prnt.sc/v8zwl0">
+</p>
