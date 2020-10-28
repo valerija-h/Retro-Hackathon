@@ -100,7 +100,8 @@ public class MarioAgentWithSound : Agent
             {
                 //TODO -- Add jump sound
                 playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, jumpForce);
-                soundManager.PlaySoundEffect("jump");
+                if (isBig) { soundManager.PlaySoundEffect("bigJump"); }
+                else { soundManager.PlaySoundEffect("smallJump"); }
             }
         
         }
@@ -245,6 +246,7 @@ public class MarioAgentWithSound : Agent
         {
             case "mushroom":
                 //TODO - play sound effect, animation
+                soundManager.PlaySoundEffect("getPowerUp");
                 Destroy(collision.gameObject);
                 ChangeToBigMario();
                 scoreManager.AddScore(collisionTag);
@@ -253,6 +255,7 @@ public class MarioAgentWithSound : Agent
                 break;
             case "flower":
                 //TODO - play a sound effect, animation
+                soundManager.PlaySoundEffect("getPowerUp");
                 Destroy(collision.gameObject);
                 scoreManager.AddScore(collisionTag);
                 score = scoreManager.GetScore();
@@ -269,7 +272,7 @@ public class MarioAgentWithSound : Agent
                 break;
             case "killbox":
                 AddReward(hitByKillboxReward);
-                EndEpisode();
+                StartCoroutine(PlayOtherAnimations("death"));
                 break;
             case "brickBlockUnder":
                 collision.gameObject.GetComponentInParent<BrickBlockManagerWithSound>().HitBrickBlock(isBig);
@@ -287,7 +290,7 @@ public class MarioAgentWithSound : Agent
                 //TODO - play end flag animation, sounds then end episode?
                 AddReward(flagReward);
                 AddReward(timeLeft * timeLeftReward); //add reward for doing it before timeLeft
-                EndEpisode();
+                StartCoroutine(ReachFlag());
                 break;
             default:
                 break;
@@ -330,6 +333,7 @@ public class MarioAgentWithSound : Agent
     // makes Mario immune to damage temporarily
     IEnumerator GetHit()
     {
+        soundManager.PlaySoundEffect("getHit");
         isHit = true;
         Physics2D.IgnoreLayerCollision(10, 9, true);
         //playerRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -354,11 +358,12 @@ public class MarioAgentWithSound : Agent
                 break;
             case "death":
                 isHit = true;
+                soundManager.PlaySoundEffect("death");
                 playerRigidbody.velocity = new Vector2(0f, 5f); // make him stop moving
                 Physics2D.IgnoreLayerCollision(10, 9, true);
                 this.GetComponent<BoxCollider2D>().enabled = false;
                 animator.SetInteger("otherState", 3);
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(2.5f);
                 Physics2D.IgnoreLayerCollision(10, 9, false);
                 animator.SetInteger("otherState", 0);
                 this.GetComponent<BoxCollider2D>().enabled = true;
@@ -366,6 +371,17 @@ public class MarioAgentWithSound : Agent
                 EndEpisode();
                 break;
         }
+    }
+
+    IEnumerator ReachFlag()
+    {
+        isHit = true;
+        playerRigidbody.velocity = new Vector2(0f, 0f);
+        this.transform.position += new Vector3(2f, 0f, 0f);
+        soundManager.PlaySoundEffect("reachFlag");
+        yield return new WaitForSeconds(4f);
+        isHit = false;
+        EndEpisode();
     }
 
     // makes Mario immune to damage temporarily
