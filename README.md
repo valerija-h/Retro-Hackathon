@@ -37,3 +37,4 @@ Due to time restraints, we weren't able to implement all aspects of the game tha
 
 ### What future improvements would you implement given more time?
 Given more time on this project, we would train our AI for longer and test a wider variety of hyperparameters in order to achieve the best performance possible. Moreover, we would like to implement the full features of the original game which we didn't have time to implement during this hackathon as well as the rest of the levels. Finally, we would attempt to fix any occasional bugs and work to smoothen the general gameplay experience.
+
